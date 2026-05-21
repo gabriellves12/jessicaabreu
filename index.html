@@ -84,8 +84,8 @@ html.lenis, html.lenis body { height: auto; }
   .lp .container { padding: 0 40px; }
 }
 
-/* entre dobras: 40px + 40px = 80px (grid de 20px) */
-.lp section { padding: 40px 0; }
+/* entre dobras: 60px + 60px = 120px (grid de 20px) */
+.lp section { padding: 60px 0; }
 .lp section:not(.dobra-hero):not(.dobra-dor) { border-top: 1px solid var(--border-hair); }
 
 /* ---------- TIPOGRAFIA (tamanhos = regra de 8) ---------- */
@@ -151,7 +151,7 @@ html.lenis, html.lenis body { height: auto; }
   background-repeat: no-repeat;
   background-color: var(--color-neutral-950);
   color: var(--color-neutral-0);
-  padding: 60px 0 40px;
+  padding: 60px 0;
   aspect-ratio: 1920 / 985;          /* mesma proporção da foto (1920x985) */
   min-height: 720px;
   display: flex;
@@ -248,84 +248,51 @@ html.lenis, html.lenis body { height: auto; }
 }
 .lp .exige-media {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: 22px;
 }
 .lp .exige-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.lp .exige-media-ph {
-  width: 100%; height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--color-neutral-950);
-  border: 2px dashed rgba(255, 255, 255, .16);
-  border-radius: var(--radius-md);
-  color: var(--text-muted);
-  font-size: 14px;
-  font-weight: var(--fw-bold);
-}
-.lp .exige-media-ph svg { width: 38px; height: 38px; color: rgba(255, 255, 255, .25); }
 .lp .exige-card p {
   font-weight: var(--fw-bold);
   font-size: 18px;
   color: var(--color-neutral-0);
-  margin-bottom: 22px;
-}
-.lp .exige-dashes {
-  display: flex;
-  gap: 6px;
-  margin-top: auto;
-}
-.lp .exige-dashes i {
-  display: block;
-  width: 18px; height: 4px;
-  background: var(--color-primary);
-  border-radius: var(--radius-full);
 }
 
+/* problema: texto à esquerda, cards dos problemas à direita */
 .lp .problema {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: start;
+}
+.lp .problema-texto h2 { margin: 0; }
+.lp .problema-fim {
+  display: block;
+  margin-top: 16px;
+  font-size: 32px;
+  color: var(--color-primary);
+}
+.lp .problema-cards { display: flex; flex-direction: column; gap: 16px; }
+.lp .problema-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
   background: var(--bg-card);
   border: 1px solid var(--border-hair);
   border-radius: var(--radius-lg);
-  padding: 40px;
-  text-align: center;
+  padding: 16px;
 }
-.lp .problema h2 { max-width: 1080px; margin: 0 auto 24px; }
-.lp .problema-list {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 16px 56px;
-  justify-content: center;
-}
-.lp .problema-list li { list-style: none; display: flex; align-items: center; gap: 12px; }
-.lp .problema-list .x {
+.lp .problema-card-icon {
   flex: none;
-  width: 26px; height: 26px;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: rgba(218, 59, 58, .18);
-  color: var(--color-primary);
-  border-radius: var(--radius-full);
-  font-weight: var(--fw-bold);
-  font-size: 14px;
-  animation: blink-x 1.2s ease-in-out infinite;
+  width: 40px;
+  height: 40px;
 }
-.lp .problema-list li:nth-child(2) .x { animation-delay: .15s; }
-.lp .problema-list li:nth-child(3) .x { animation-delay: .30s; }
-.lp .problema-list li:nth-child(4) .x { animation-delay: .45s; }
-@keyframes blink-x {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: .15; }
-}
-.lp .problema-list span:last-child { font-size: 16px; color: var(--text-soft); }
-.lp .problema-close {
-  margin-top: 32px;
-  font-weight: var(--fw-bold);
-  font-size: 32px;
-  color: var(--color-primary);
+.lp .problema-card p {
+  font-weight: var(--fw-regular);
+  font-size: 24px;
+  color: var(--color-neutral-0);
 }
 
 /* ============================================================
@@ -578,7 +545,7 @@ html.lenis, html.lenis body { height: auto; }
   .lp .exige-grid { grid-template-columns: 1fr; }
   .lp .aprender-grid { grid-template-columns: 1fr 1fr; }
   .lp .aprender-head { grid-template-columns: 1fr; gap: 32px; }
-  .lp .problema-list { grid-template-columns: auto; }
+  .lp .problema { grid-template-columns: 1fr; }
   /* expert: foto acima do texto */
   .lp .expert-grid { grid-template-columns: 1fr; gap: 32px; }
   .lp .expert-photo { max-width: 440px; margin: 0 auto; }
@@ -607,7 +574,6 @@ html.lenis, html.lenis body { height: auto; }
   }
   .lp .dobra-hero .container { padding: 32px 24px 40px; }
   .lp .aprender-grid { grid-template-columns: 1fr; }
-  .lp .problema { padding: 36px 24px; }
   .lp .form-card { padding: 28px 24px; }
   .lp .btn-cta { width: 100%; }
   .lp .hero-cta { align-self: stretch; }
@@ -625,7 +591,6 @@ html.lenis, html.lenis body { height: auto; }
 @media (prefers-reduced-motion: reduce) {
   .lp .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .lp .btn-cta,
-  .lp .problema-list .x,
   .lp .aprender-img { animation: none !important; }
   html { scroll-behavior: auto; }
 }
@@ -682,56 +647,52 @@ html.lenis, html.lenis body { height: auto; }
     <div class="container">
       <div class="dor-head">
         <span class="eyebrow reveal">O que trava o crescimento</span>
-        <h2 class="reveal">Existe uma diferença enorme entre advogar<br>e <span class="hl">construir uma advocacia que fatura.</span></h2>
+        <h2 class="reveal">Existe uma diferença enorme entre advogar<br><span class="hl">e construir uma advocacia que fatura.</span></h2>
         <p class="dor-intro lead reveal">Advogar exige conhecimento técnico. Mas construir uma<br>advocacia que cresce exige mais do que isso.</p>
       </div>
 
-      <!-- IMAGEM dos cards: troque cada <span class="exige-media-ph">...</span> por <img src="sua-imagem.jpg" alt="..."> -->
       <div class="exige-grid stagger">
         <div class="exige-card reveal">
           <span class="exige-bar"></span>
           <div class="exige-media">
-            <span class="exige-media-ph">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.8"/><path d="M21 15l-5-5L5 21"/></svg>
-              Imagem
-            </span>
+            <img src="bloco-01.jpg" alt="">
           </div>
-          <p>Saber o que fazer para ser percebido pelo cliente certo.</p>
-          <div class="exige-dashes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        </div>
+          <p>Saber o que fazer para ser percebido pelo cliente certo.</p>        </div>
         <div class="exige-card reveal">
           <span class="exige-bar"></span>
           <div class="exige-media">
-            <span class="exige-media-ph">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.8"/><path d="M21 15l-5-5L5 21"/></svg>
-              Imagem
-            </span>
+            <img src="bloco-02.jpg" alt="">
           </div>
-          <p>Saber transformar interesse em confiança.</p>
-          <div class="exige-dashes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        </div>
+          <p>Saber transformar interesse em confiança.</p>        </div>
         <div class="exige-card reveal">
           <span class="exige-bar"></span>
           <div class="exige-media">
-            <span class="exige-media-ph">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.8"/><path d="M21 15l-5-5L5 21"/></svg>
-              Imagem
-            </span>
+            <img src="bloco-03.jpg" alt="">
           </div>
-          <p>Saber conduzir oportunidades até a contratação.</p>
-          <div class="exige-dashes" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        </div>
+          <p>Saber conduzir oportunidades até a contratação.</p>        </div>
       </div>
 
-      <div class="problema reveal">
-        <h2>O problema é que muitos advogados tentam aumentar<br>faturamento fazendo mais do mesmo.</h2>
-        <ul class="problema-list stagger">
-          <li class="reveal"><span class="x">✕</span><span>Mais posts sem estratégia.</span></li>
-          <li class="reveal"><span class="x">✕</span><span>Mais reuniões sem direção.</span></li>
-          <li class="reveal"><span class="x">✕</span><span>Mais conversas que não fecham.</span></li>
-          <li class="reveal"><span class="x">✕</span><span>Mais espera por indicações.</span></li>
-        </ul>
-        <p class="problema-close">E isso mantém o escritório preso no mesmo lugar.</p>
+      <div class="problema">
+        <div class="problema-texto reveal">
+          <h2>O problema é que muitos advogados tentam aumentar faturamento<br>fazendo mais do mesmo. <span class="problema-fim">E isso mantém o escritório preso<br>no mesmo lugar.</span></h2>
+        </div>        <div class="problema-cards stagger">
+          <div class="problema-card reveal">
+            <img class="problema-card-icon" src="x.svg" alt="">
+            <p>Mais posts sem estratégia.</p>
+          </div>
+          <div class="problema-card reveal">
+            <img class="problema-card-icon" src="x.svg" alt="">
+            <p>Mais reuniões sem direção.</p>
+          </div>
+          <div class="problema-card reveal">
+            <img class="problema-card-icon" src="x.svg" alt="">
+            <p>Mais conversas que não fecham.</p>
+          </div>
+          <div class="problema-card reveal">
+            <img class="problema-card-icon" src="x.svg" alt="">
+            <p>Mais espera por indicações.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
