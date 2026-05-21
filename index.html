@@ -576,8 +576,10 @@ html.lenis, html.lenis body { height: auto; }
 @media (max-width: 767px) {
   /* hero mobile: imagem em largura cheia; conteúdo sobreposto a partir da linha do peito */
   .lp .dobra-hero {
-    background-image: url("hero-mobile.jpg");
-    background-size: 100% auto;
+    background-image:
+      linear-gradient(to bottom, rgba(10, 10, 10, 0) 52vw, rgba(10, 10, 10, 1) 100vw),
+      url("hero-mobile.jpg");
+    background-size: 100% 100%, 100% auto;
     background-position: top center;
     background-repeat: no-repeat;
     background-color: var(--color-neutral-950);
