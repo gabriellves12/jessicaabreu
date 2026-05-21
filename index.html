@@ -157,8 +157,6 @@ html.lenis, html.lenis body { height: auto; }
   display: flex;
   align-items: center;
 }
-/* imagem dedicada para mobile — escondida no desktop */
-.lp .hero-mobile-img { display: none; }
 
 /* grid 1280px: bloco de texto na coluna esquerda; experts (imagem) à direita.
    1ª dobra é exceção: sem padding lateral, bloco encostado na borda do grid (skill §5) */
@@ -222,6 +220,7 @@ html.lenis, html.lenis body { height: auto; }
 .lp .dor-head .eyebrow { display: block; margin-bottom: 14px; }
 .lp .dor-head h2 { margin-bottom: 20px; }
 .lp .dor-intro { color: var(--text-soft); margin: 0; }
+.lp .br-mobile { display: none; }
 
 /* cards: barra vermelha + imagem + texto + traços */
 .lp .exige-grid {
@@ -555,36 +554,51 @@ html.lenis, html.lenis body { height: auto; }
 }
 /* MOBILE — até 767px (skill §3: referência de design 360px) */
 @media (max-width: 767px) {
-  /* hero mobile: imagem dedicada ([HERO] MOBILE.jpg) primeiro, conteúdo depois */
+  /* hero mobile: imagem em largura cheia; conteúdo sobreposto a partir da linha do peito */
   .lp .dobra-hero {
-    display: block;
-    background-image: none;
-    aspect-ratio: auto;
-    min-height: 0;
-    padding: 0;
-  }
-  .lp .hero-mobile-img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 420 / 780;
     background-image: url("hero-mobile.jpg");
-    background-size: cover;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top center;
     background-repeat: no-repeat;
+    background-color: var(--color-neutral-950);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    aspect-ratio: auto;
+    padding: 54vw 0 0;
   }
-  .lp .dobra-hero .container { padding: 32px 24px 40px; }
-  .lp .aprender-grid { grid-template-columns: 1fr; }
-  .lp .form-card { padding: 28px 24px; }
-  .lp .btn-cta { width: 100%; }
-  .lp .hero-cta { align-self: stretch; }
+  .lp .dobra-hero br { display: none; }
+  .lp .dobra-hero .container { padding: 0 24px 44px; }
+  /* dobra 2: quebras de texto só no mobile */
+  .lp .br-desktop { display: none; }
+  .lp .br-mobile { display: inline; }
+  .lp .dor-intro { font-size: 16px; }
+  .lp .problema-texto { text-align: center; }
+  .lp .problema-texto h2 { font-size: 24px; }
+  .lp .problema-fim { font-size: 24px; }
+  .lp .problema-card p { font-size: 16px; text-align: left; }
+  .lp .problema-card-icon { width: 35px; height: 35px; }
+  .lp .aprender-head-text { text-align: center; }
+  .lp .aprender-head-text p { font-size: 16px; }
+
+  /* hero mobile: conteúdo todo centralizado */
+  .lp .hero-text { text-align: center; gap: 20px; }
+  .lp h1 { font-size: 28px; }
+  .lp .hero-sub .lead { font-size: 16px; }
+  .lp .hero-brand-row { flex-direction: column; align-items: center; }
   .lp .hero-logo { width: 220px; }
   .lp .hero-info {
     border-left: none;
     padding-left: 0;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 8px 18px;
   }
+  .lp .aprender-grid { grid-template-columns: 1fr; }
+  .lp .form-card { padding: 28px 24px; }
+  .lp .btn-cta { width: 100%; }
+  .lp .hero-cta { align-self: center; width: auto; }
 }
 
 /* acessibilidade — respeita quem prefere menos movimento */
@@ -602,7 +616,6 @@ html.lenis, html.lenis body { height: auto; }
 
   <!-- ===================== DOBRA 1 — HERO ===================== -->
   <section class="dobra-hero">
-    <div class="hero-mobile-img" role="img" aria-label="Jéssica Abreu e especialista em crescimento estratégico para advogados"></div>
     <div class="container">
       <div class="hero-text">
 
@@ -648,7 +661,7 @@ html.lenis, html.lenis body { height: auto; }
       <div class="dor-head">
         <span class="eyebrow reveal">O que trava o crescimento</span>
         <h2 class="reveal">Existe uma diferença enorme entre advogar<br><span class="hl">e construir uma advocacia que fatura.</span></h2>
-        <p class="dor-intro lead reveal">Advogar exige conhecimento técnico. Mas construir uma<br>advocacia que cresce exige mais do que isso.</p>
+        <p class="dor-intro lead reveal">Advogar exige conhecimento técnico.<br class="br-mobile"> Mas construir uma<br class="br-desktop"> advocacia que cresce<br class="br-mobile"> exige mais do que isso.</p>
       </div>
 
       <div class="exige-grid stagger">
@@ -674,7 +687,7 @@ html.lenis, html.lenis body { height: auto; }
 
       <div class="problema">
         <div class="problema-texto reveal">
-          <h2>O problema é que muitos advogados tentam aumentar faturamento<br>fazendo mais do mesmo. <span class="problema-fim">E isso mantém o escritório preso<br>no mesmo lugar.</span></h2>
+          <h2>O problema é que muitos<br class="br-mobile"> advogados tentam aumentar<br class="br-mobile"> faturamento<br class="br-desktop"> fazendo<br class="br-mobile"> mais do mesmo. <span class="problema-fim">E isso mantém o escritório<br class="br-mobile"> preso<br class="br-desktop"> no mesmo lugar.</span></h2>
         </div>        <div class="problema-cards stagger">
           <div class="problema-card reveal">
             <img class="problema-card-icon" src="x.svg" alt="">
@@ -704,7 +717,7 @@ html.lenis, html.lenis body { height: auto; }
         <div class="aprender-head-text">
           <span class="eyebrow reveal">Conteúdo da imersão</span>
           <h2 class="reveal">O que você vai<br>aprender na imersão</h2>
-          <p class="reveal">Em 1 dia, você vai entender o que precisa ser ajustado<br>para sua advocacia sair do improviso e entrar em uma<br>rota de crescimento mais estratégica ainda em 2026.</p>
+          <p class="reveal">Em 1 dia, você vai entender o que precisa ser<br class="br-mobile"> ajustado<br class="br-desktop"> para sua advocacia sair do improviso<br class="br-mobile"> e entrar em uma<br class="br-desktop"> rota de crescimento mais<br class="br-mobile"> estratégica ainda em 2026.</p>
         </div>
         <div class="aprender-media reveal">
           <img class="aprender-img" src="notebook.png" alt="Notebook exibindo a Imersão Prática para Advogados">
