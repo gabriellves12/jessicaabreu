@@ -876,8 +876,9 @@ html.lenis, html.lenis body { height: auto; }
   }
 
   /* ---------- Formulário de captura ---------- */
-  /* DEMO: exibe a confirmação no front. Para produção, conecte este
-     formulário ao Elementor Forms ou à ferramenta de e-mail/CRM do cliente. */
+  /* Ao enviar, redireciona direto para a página de obrigado.
+     Para produção: conectar o formulário a uma ferramenta de e-mail/CRM
+     (Elementor Forms, RD Station, etc.) para registrar o lead. */
   var form = document.getElementById('form-captura');
   var wrap = document.getElementById('form-wrap');
   if (form) {
@@ -890,9 +891,8 @@ html.lenis, html.lenis body { height: auto; }
         alert('Por favor, preencha nome, e-mail e WhatsApp para garantir sua vaga.');
         return;
       }
-      wrap.classList.add('is-sent');
-      if (lenis) { lenis.scrollTo(wrap, { offset: -80 }); }
-      else { wrap.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      /* lead preencheu o formulário → vai direto para a página de obrigado */
+      window.location.href = 'obrigado.html';
     });
   }
 })();
